@@ -1,0 +1,10 @@
+﻿@model IEnumerable<WebRuou.Models.nhacungcap>
+<p class="lead" style="color:blueviolet"> NHÀ CUNG CẤP</p>
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("SPTheoNCC", "Wine", new {id= item.MaNCC})" class="list-group-item">
+            @item.TenNCC
+        </a>
+    }
+</div>

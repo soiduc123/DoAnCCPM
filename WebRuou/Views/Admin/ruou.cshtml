@@ -1,0 +1,84 @@
+﻿@using WebRuou.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<WebRuou.Models.ruou>
+
+@helper Truncate(string input,int length)
+    {
+        if (input.Length < length)
+    {
+    @input
+}
+else
+{
+    @input.Substring(0,length) <text>..</text>
+}
+    }
+@{
+    ViewBag.Title = "ruou";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>QUẢN LÝ SẢN PHẨM</h2>
+
+<p>
+    @Html.ActionLink("Thêm SP mới", "ThemmoiRuou")
+</p>
+<table class="table">
+    <tr>
+        <th style="width:200px">  Tên Sản Phẩm </th>
+        <th style="width:100px">  Giá bán  </th>
+        <th style="width:300px">  Mô tả    </th>
+        <th style="width:120px">  Ảnh bìa  </th>
+        <th style="width:150px">  Ngày cập nhật </th>
+        <th style="width:120px">  SL.Tồn </th>
+        <th style="width:120px">  Ma Loai   </th>
+        <th style="width:100px">  NhaCungCap   </th>
+        <th style="width:200px">  </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tenruou)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Giaban)
+        </td>
+        <td>
+            @Truncate(item.Mota,100)
+        </td>
+        <td>
+            <img src="@Url.Content("~/image/"+  item.Anhbia)" width="120px" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ngaycapnhat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soluongton)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Maloai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaNCC)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa SP", "Suaruou", new { id=item.Maruou }) |
+            @Html.ActionLink("Chi Tiet", "Chitietruou", new { id=item.Maruou }) |
+            @Html.ActionLink("Xoa", "Xoaruou", new { id=item.Maruou })
+        </td>
+    </tr>
+}
+
+</table>
+@* Tao liên kết các trang  *@
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+<div class="MenuTrang">
+
+    @Html.PagedListPager(Model, page => Url.Action("Ruou", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

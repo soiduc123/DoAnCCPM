@@ -1,0 +1,59 @@
+﻿@using WebRuou.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<WebRuou.Models.nhacungcap>
+@{
+    ViewBag.Title = "Nhacungcap";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thông tin nhà cung cấp</h2>
+
+
+<p>
+    @Html.ActionLink("THÊM MỚI NHÀ CUNG CẤP", "Themmoinhacungcap")
+</p>
+<table class="table">
+    <tr>
+        <th style="width:200px">
+            Tên nhà cung cấp
+        </th>
+        <th style="width:200px">
+            Địa chỉ
+        </th>
+        <th style="width:200px">
+            Số điện thoại
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenNCC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diachi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DienThoai)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Suanhacungcap", new { id = item.MaNCC }) |
+                @*@Html.ActionLink("Chi tiết", "Chitietthuonghieu", new { id=item.MaTH }) |*@
+                @Html.ActionLink("Xóa", "Xoanhacungcap", new { id = item.MaNCC })
+            </td>
+        </tr>
+    }
+
+</table>
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("ruou", new { page = page }))
+
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

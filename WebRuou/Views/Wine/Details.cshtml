@@ -1,0 +1,47 @@
+﻿<style type="text/css">
+    #Datmua a {
+        clear: both;
+        background-color: red;
+        color: white;
+        width: 120px;
+        height: 35px;
+        display: block;
+        float: right;
+        text-align: center;
+        padding-top: 10px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        #Datmua a:hover {
+            background-color: gray;
+            color: red;
+        }
+</style>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<h3> THÔNG TIN CHI TIẾT SẢN PHẨM</h3>
+<div>
+    <div style="width:40%; float:left; border-left: dotted 1px; border-color:azure">
+        <img src="~/image/@Model.Anhbia" width="100%" />
+    </div>
+    <div style="width:60%; float:left; padding:10px">
+        <h4 style="font-weight:bold; color:red">Tên SP: @Model.Tenruou </h4>
+        <p style="text-align:justify"><Span style="font-weight:bold"> Mô tả: </Span>@Model.Mota </p>
+        <p style="font-weight:bold"> Giá bán: <span style="color:red; font-size:16pt "> @Model.Giaban VNĐ </span></p>
+        
+    </div>
+    <div>
+        <div id="Datmua">
+            <a href="@Url.Action("ThemGiohang", "GioHang", new { @iMaruou= @Model.Maruou, @strURL=Request.Url.ToString() })" class="list-group-item">
+
+                ĐẶT MUA
+            </a>
+        </div>
+        <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>
+    </div>
+</div>
+

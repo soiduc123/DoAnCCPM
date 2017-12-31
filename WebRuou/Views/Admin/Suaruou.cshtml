@@ -1,0 +1,96 @@
+﻿@model WebRuou.Models.ruou
+
+@{
+    ViewBag.Title = "Suaruou";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>SuaSP</h2>
+<form action="@Url.Action("Suaruou","Admin")" method="post" enctype="multipart/form-data">
+    @*@using (Html.BeginForm())
+        {*@
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Maruou)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Maruou, "Mã SP", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div style="font:18px; padding: 5px 0 0 5px"> @Model.Maruou</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tenruou, "Tên Sản Phẩm", htmlAttributes:new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tenruou)
+                @Html.ValidationMessageFor(model => model.Tenruou)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Giaban, "Giá bán", htmlAttributes:new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Giaban)
+                @Html.ValidationMessageFor(model => model.Giaban)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mota, "Mô tả", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea name="Mota">@Model.Mota</textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Anhbia, "Ảnh", htmlAttributes:new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                Chọn ảnh mới
+                <input type="file" name="fileUpload" />
+                <img src="@Url.Content("~/image/"+ Model.Anhbia)" width="120px" /> (Ảnh hiện tại)
+                @*thong bao trung*@
+                @ViewBag.Thongbao
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ngaycapnhat, "Ngày cập nhật", htmlAttributes:new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ngaycapnhat)
+                @Html.ValidationMessageFor(model => model.Ngaycapnhat)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Soluongton, "Số lượng tồn", htmlAttributes:new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Soluongton)
+                @Html.ValidationMessageFor(model => model.Soluongton)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Maloai, "Mã loại", htmlAttributes:new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaLoai")
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaNCC, "Mã nhà cung cấp", htmlAttributes:new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaNCC")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    @*}*@
+</form>
+<div>
+    @Html.ActionLink("Trở Về", "ruou")
+</div>

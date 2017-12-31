@@ -1,0 +1,50 @@
+﻿@using WebRuou.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<ruou>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+                      <div class="row">
+                          @foreach (var ruou in Model)
+                          {
+
+                              <div class="col-sm-4 col-lg-4 col-md-4">
+                                  <div class="thumbnail">
+                                      <a href="@Url.Action("Details","Wine", new { id = ruou.Maruou})">
+                                          <img alt="@ruou.Tenruou" src="~/image/@ruou.Anhbia" width="100"height="100"/>
+                                          <div>
+                                              <br />
+                                              <h4 style="text-align:center">                                                
+                                                  @ruou.Tenruou
+                                              </h4>
+                                              <p></p>
+                                          </div>
+                                      </a>
+                                      <div class="ratings">
+                                          <p class="pull-right">1996 reviews</p>
+                                          <p>
+                                              <span class="glyphicon glyphicon-star"></span>
+                                              <span class="glyphicon glyphicon-star"></span>
+                                              <span class="glyphicon glyphicon-star"></span>
+                                              <span class="glyphicon glyphicon-star"></span>
+                                              <span class="glyphicon glyphicon-star"></span>
+                                          </p>
+                                      </div>
+                                  </div>
+                              </div>
+                          }
+                          </div>
+
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+<div class="MenuTrang">
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
+@*<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>*@

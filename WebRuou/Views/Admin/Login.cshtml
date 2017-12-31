@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css"></style>
+    <link href="~/Content/css/login.css" rel="stylesheet" type="text/css">
+    <script src="~/Content/js/login.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+    }
+    <div class="container">
+
+        <div class="row" id="pwd-container">
+
+            <div class="col-md-4"></div>
+
+            <div class="col-md-4">
+                <section class="login-form">
+                    <form method="post" action="#" role="login">
+                        <img src="http://i.imgur.com/RcmcLv4.png" class="img-responsive" alt="" />
+                        <input type="text" name="username" placeholder="Tài khoản" required class="form-control input-lg" />
+                        @ViewData["Loi1"]
+                        <input type="password" name="password" class="form-control input-lg" id="password" placeholder="Mật Khẩu" required="" />
+                        @ViewData["Loi2"]
+
+                        <div class="pwstrength_viewport_progress"></div>
+
+
+                        <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Đăng nhập</button>
+
+                        <div>
+                            <a href="#">Create account</a> or <a href="#">reset password</a>
+                        </div>
+
+                    </form>
+                </section>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿@using WebRuou.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<WebRuou.Models.loai>
+@{
+    ViewBag.Title = "Loairuou";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align">LOẠI SP</h2>
+<p>
+    @Html.ActionLink("THÊM MỚI LOẠI SP", "Themmoiloairuou")
+</p>
+<table class="table">
+    <tr>
+        <th style="width:200px">
+            Tên loại SP
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tenloai)
+            </td>
+
+            <td>
+                @Html.ActionLink("Sửa", "Sualoairuou", new { id = item.Maloai }) |
+                @*@Html.ActionLink("Chi tiết", "Chitietthuonghieu", new { id=item.MaTH }) |*@
+                @Html.ActionLink("Xóa", "Xoaloairuou", new { id = item.Maloai })
+            </td>
+        </tr>
+    }
+
+</table>
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Loairuou", new { page = page }))
+
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
