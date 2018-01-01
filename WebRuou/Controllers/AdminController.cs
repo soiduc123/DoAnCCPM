@@ -9,6 +9,7 @@ using PagedList.Mvc;
 using System.IO;
 using System.Data.Entity;
 
+
 namespace WebRuou.Controllers
 {
     public class AdminController : Controller
@@ -328,6 +329,7 @@ namespace WebRuou.Controllers
             }
             return View(loairuou);
         }
+
         [HttpPost, ActionName("Xoaloairuou")]
         public ActionResult Xacnhanxoaloairuou(int id)
         {
@@ -342,6 +344,7 @@ namespace WebRuou.Controllers
             db.SubmitChanges();
             return RedirectToAction("Loairuou");
         }
+
         [HttpGet]
         public ActionResult Sualoairuou(int id)
         {
@@ -353,6 +356,7 @@ namespace WebRuou.Controllers
             }
             return View(loai);
         }
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Sualoairuou(loai thuonghieu)
