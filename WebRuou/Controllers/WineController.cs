@@ -56,5 +56,9 @@ namespace WebRuou.Controllers
                        select s;
             return View(ruou.Single());
         }
+        public ActionResult Lienhe()
+        {
+            return View();
+        }
     }
 }
