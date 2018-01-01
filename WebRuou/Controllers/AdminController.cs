@@ -107,7 +107,114 @@ namespace WebRuou.Controllers
                 }
             }
         }
-        
+        [HttpGet]
+        public ActionResult Suaruou(int id)
+        {
+            //Lay ra doi tuong sach theo ma
+            ruou ruou = db.ruous.SingleOrDefault(n => n.Maruou == id);
+            ViewBag.Maruou = ruou.Maruou;
+            if (ruou == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            //Dua du lieu vao dropdownList
+            //Lay ds tu tabke chu de, sắp xep tang dan trheo ten chu de, chon lay gia tri Ma CD, hien thi thi Tenchude
+            ViewBag.Maloai = new SelectList(db.loais.ToList().OrderBy(n => n.Tenloai), "Maloai", "Tenloai", ruou.Maloai);
+            ViewBag.MaNCC = new SelectList(db.nhacungcaps.ToList().OrderBy(n => n.TenNCC), "MaNCC", "TenNCC", ruou.MaNCC);
+            return View(ruou);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Suaruou(ruou ruou, HttpPostedFileBase fileUpload)
+        {
+            //Dua du lieu vao dropdownload
+            ViewBag.Maloai = new SelectList(db.loais.ToList().OrderBy(n => n.Tenloai), "Maloai", "Tenloai");
+            ViewBag.MaNCC = new SelectList(db.nhacungcaps.ToList().OrderBy(n => n.TenNCC), "MaNCC", "TenNCC");
+            //Kiem tra duong dan file
+            if (fileUpload == null)
+            {
+                ViewBag.Thongbao = "Vui lòng chọn ảnh bìa";
+                return View();
+            }
+            //Them vao CSDL
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    //Luu ten fie, luu y bo sung thu vien using System.IO;
+                    var fileName = Path.GetFileName(fileUpload.FileName);
+                    //Luu duong dan cua file
+                    var path = Path.Combine(Server.MapPath("~/image"), fileName);
+                    //Kiem tra hình anh ton tai chua?
+                    if (System.IO.File.Exists(path))
+                        ViewBag.Thongbao = "Hình ảnh đã tồn tại";
+                    else
+                    {
+                        //Luu hinh anh vao duong dan
+                        fileUpload.SaveAs(path);
+                    }
+                    ruou.Anhbia = fileName;
+                    //Luu vao CSDL   
+                    ruou Ruou = db.ruous.Single(p => p.Maruou == ruou.Maruou);
+                    Ruou.Tenruou = ruou.Tenruou;
+                    Ruou.Giaban = ruou.Giaban;
+                    Ruou.Mota = ruou.Mota;
+                    Ruou.Anhbia = ruou.Anhbia;
+                    Ruou.Ngaycapnhat = ruou.Ngaycapnhat;
+                    Ruou.Soluongton = ruou.Soluongton;
+                    Ruou.Maloai = ruou.Maloai;
+                    Ruou.MaNCC = ruou.MaNCC;
+                    db.SubmitChanges();
+
+                 //   UpdateModel(ruou);
+                 //   db.SubmitChanges();
+
+                }
+                return RedirectToAction("ruou");
+            }
+        }
+        public ActionResult Chitietruou(int id)
+        {
+            //Lay ra doi tuong sach theo ma
+            ruou sach = db.ruous.SingleOrDefault(n => n.Maruou == id);
+            ViewBag.Maruou = sach.Maruou;
+            if (sach == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(sach);
+        }
+        [HttpGet]
+        public ActionResult Xoaruou(int id)
+        {
+            //Lay ra doi tuong sach can xoa theo ma
+            ruou ruou = db.ruous.SingleOrDefault(n => n.Maruou == id);
+            ViewBag.Maruou = ruou.Maruou;
+            if (ruou == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(ruou);
+        }
+        [HttpPost, ActionName("Xoaruou")]
+        public ActionResult Xacnhanxoa(int id)
+        {
+            //Lay ra doi tuong sach can xoa theo ma
+            ruou ruou = db.ruous.SingleOrDefault(n => n.Maruou == id);
+            ViewBag.Maruou = ruou.Maruou;
+            if (ruou == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            db.ruous.DeleteOnSubmit(ruou);
+            db.SubmitChanges();
+            return RedirectToAction("ruou");
+        }
+
         public ActionResult Nhacungcap(int? page)
         {
             int pageNumber = (page ?? 1);
