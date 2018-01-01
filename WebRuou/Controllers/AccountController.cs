@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -129,6 +129,10 @@ namespace WebRuou.Controllers
                     return View("Lockout");
                 case SignInStatus.Failure:
                 default:
+
+
+
+
                     ModelState.AddModelError("", "Invalid code.");
                     return View(model);
             }
@@ -463,6 +467,11 @@ namespace WebRuou.Controllers
             {
                 LoginProvider = provider;
                 RedirectUri = redirectUri;
+
+
+
+
+
                 UserId = userId;
             }
 
