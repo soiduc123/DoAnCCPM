@@ -1,4 +1,4 @@
-﻿using System;
+﻿nayusing System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -37,6 +37,9 @@ namespace WebRuou.Controllers
             return PartialView(nhacungcap);
         }
 
-        
+        public ActionResult Lienhe()
+        {
+            return View();
+        }
     }
 }
