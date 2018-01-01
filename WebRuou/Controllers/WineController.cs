@@ -18,12 +18,12 @@ namespace WebRuou.Controllers
             return data.ruous.OrderByDescending(a => a.Ngaycapnhat).Take(count).ToList();
         }
 
-        public ActionResult Index(int ? page)
+        public ActionResult Index(int? page)
         {
-            int pageSize =5;
+            int pageSize = 5;
             int pageNum = (page ?? 1);
             var ruoumoi = Layruoumoi(9);
-            return View(ruoumoi.ToPagedList(pageNum,pageSize));
+            return View(ruoumoi.ToPagedList(pageNum, pageSize));
         }
 
         public ActionResult Loai()
@@ -35,6 +35,26 @@ namespace WebRuou.Controllers
         {
             var nhacungcap = from cd in data.nhacungcaps select cd;
             return PartialView(nhacungcap);
+        }
+
+        public ActionResult SPTheoLoai(int id)
+        {
+            var ruou = from s in data.ruous where s.Maloai == id select s;
+            return View(ruou);
+        }
+
+        public ActionResult SPTheoNCC(int id)
+        {
+            var ruou = from s in data.ruous where s.MaNCC == id select s;
+            return View(ruou);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var ruou = from s in data.ruous
+                       where s.Maruou == id
+                       select s;
+            return View(ruou.Single());
         }
 
         public ActionResult Lienhe()
