@@ -300,6 +300,7 @@ namespace WebRuou.Controllers
             int pageSize = 7;
             return View(db.loais.ToList().OrderBy(n => n.Maloai).ToPagedList(pageNumber, pageSize));
         }
+
         [HttpGet]
         public ActionResult Themmoiloairuou()
         {
