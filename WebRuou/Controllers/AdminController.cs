@@ -186,6 +186,7 @@ namespace WebRuou.Controllers
             }
             return View(sach);
         }
+        
         [HttpGet]
         public ActionResult Xoaruou(int id)
         {
@@ -261,7 +262,7 @@ namespace WebRuou.Controllers
             db.SubmitChanges();
             return RedirectToAction("Nhacungcap");
         }
-        
+
         [HttpGet]
         public ActionResult Suanhacungcap(int id)
         {
