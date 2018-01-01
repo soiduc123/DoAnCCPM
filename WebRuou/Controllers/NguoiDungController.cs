@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -32,6 +32,9 @@ namespace MvcBookStore.Controllers
             var diachi = collection["Diachi"];
             var email = collection["Email"];
             var dienthoai = collection["Dienthoai"];
+
+
+
             var ngaysinh = String.Format("{0:MM/dd/yyyy}", collection["Ngaysinh"]);
             if (String.IsNullOrEmpty(hoten))
             {
