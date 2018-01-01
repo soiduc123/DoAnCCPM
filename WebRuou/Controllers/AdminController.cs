@@ -174,6 +174,7 @@ namespace WebRuou.Controllers
                 return RedirectToAction("ruou");
             }
         }
+        
         public ActionResult Chitietruou(int id)
         {
             //Lay ra doi tuong sach theo ma
