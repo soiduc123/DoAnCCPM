@@ -261,6 +261,7 @@ namespace WebRuou.Controllers
             db.SubmitChanges();
             return RedirectToAction("Nhacungcap");
         }
+        
         [HttpGet]
         public ActionResult Suanhacungcap(int id)
         {
