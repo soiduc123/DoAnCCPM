@@ -34,6 +34,7 @@ namespace WebRuou.Controllers
         }
 
         [HttpPost]
+
         public ActionResult Login(FormCollection collection)
         {
             var tendn = collection["username"];
