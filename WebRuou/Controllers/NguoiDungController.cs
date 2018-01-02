@@ -33,9 +33,7 @@ namespace MvcBookStore.Controllers
             var email = collection["Email"];
             var dienthoai = collection["Dienthoai"];
 
-
-
-            var ngaysinh = String.Format("{0:MM/dd/yyyy}", collection["Ngaysinh"]);
+      var ngaysinh = String.Format("{0:MM/dd/yyyy}", collection["Ngaysinh"]);
             if (String.IsNullOrEmpty(hoten))
             {
                 ViewData["Loi1"] = "Họ tên khách hàng không được để trống";
@@ -52,7 +50,6 @@ namespace MvcBookStore.Controllers
             {
                 ViewData["Loi4"] = "Phải nhập lại mật khẩu";
             }
-
 
             if (String.IsNullOrEmpty(email))
             {
