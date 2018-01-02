@@ -59,6 +59,7 @@ namespace WebRuou.Controllers
             }
             return View();
         }
+
         [HttpGet]
         public ActionResult ThemmoiRuou()
         {
