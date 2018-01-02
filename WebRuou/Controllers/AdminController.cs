@@ -111,6 +111,7 @@ namespace WebRuou.Controllers
                 }
             }
         }
+
         [HttpGet]
         public ActionResult Suaruou(int id)
         {
