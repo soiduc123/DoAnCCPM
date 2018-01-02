@@ -43,6 +43,7 @@ namespace WebRuou.Controllers
 
         public ApplicationUserManager UserManager
 
+        
         {
             get
             {
@@ -124,6 +125,7 @@ namespace WebRuou.Controllers
             // You can configure the account lockout settings in IdentityConfig
             var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
+
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(model.ReturnUrl);
