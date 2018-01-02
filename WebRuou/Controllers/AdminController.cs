@@ -32,6 +32,7 @@ namespace WebRuou.Controllers
 
             return View();
         }
+
         [HttpPost]
         public ActionResult Login(FormCollection collection)
         {
