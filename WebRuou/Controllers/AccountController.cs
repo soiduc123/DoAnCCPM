@@ -14,6 +14,7 @@ namespace WebRuou.Controllers
 {
     [Authorize]
     public class AccountController : Controller
+
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -41,6 +42,7 @@ namespace WebRuou.Controllers
         }
 
         public ApplicationUserManager UserManager
+
         {
             get
             {
